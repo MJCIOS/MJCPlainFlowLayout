@@ -1,3 +1,4 @@
 # MJCPlainFlowLayout
 流水布局
-![image](https://github.com/MJCIOS/MJCDropdownMenu/raw/master/MJCDropdownMenuDemo/MJCDropdownMenuDemo/right.gif)
+![image](https://github.com/MJCIOS/MJCPlainFlowLayout/raw/master/MJCPlainFlowLayoutDemo/MJCPlainFlowLayoutDemo/layout.gif)
+![image](https://github.com/MJCIOS/MJCPlainFlowLayout/raw/master/MJCPlainFlowLayoutDemo/MJCPlainFlowLayoutDemo/layout2.gif)
