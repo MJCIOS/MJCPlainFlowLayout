@@ -15,6 +15,9 @@
 		25AB25A61DF303C900B0A995 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25AB25A41DF303C900B0A995 /* LaunchScreen.storyboard */; };
 		25AB25B11DF303C900B0A995 /* MJCPlainFlowLayoutDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB25B01DF303C900B0A995 /* MJCPlainFlowLayoutDemoTests.m */; };
 		25AB25BC1DF303C900B0A995 /* MJCPlainFlowLayoutDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB25BB1DF303C900B0A995 /* MJCPlainFlowLayoutDemoUITests.m */; };
+		25AB25CA1DF30C5100B0A995 /* layout.gif in Resources */ = {isa = PBXBuildFile; fileRef = 25AB25C91DF30C5100B0A995 /* layout.gif */; };
+		25AB25CE1DF30C5B00B0A995 /* MJCPlainFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB25CD1DF30C5B00B0A995 /* MJCPlainFlowLayout.m */; };
+		25AB25D61DF3C14900B0A995 /* layout2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 25AB25D51DF3C14900B0A995 /* layout2.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,10 @@
 		25AB25B71DF303C900B0A995 /* MJCPlainFlowLayoutDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MJCPlainFlowLayoutDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25AB25BB1DF303C900B0A995 /* MJCPlainFlowLayoutDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJCPlainFlowLayoutDemoUITests.m; sourceTree = "<group>"; };
 		25AB25BD1DF303C900B0A995 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25AB25C91DF30C5100B0A995 /* layout.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layout.gif; sourceTree = "<group>"; };
+		25AB25CC1DF30C5B00B0A995 /* MJCPlainFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJCPlainFlowLayout.h; sourceTree = "<group>"; };
+		25AB25CD1DF30C5B00B0A995 /* MJCPlainFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJCPlainFlowLayout.m; sourceTree = "<group>"; };
+		25AB25D51DF3C14900B0A995 /* layout2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layout2.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +108,11 @@
 		25AB25951DF303C900B0A995 /* MJCPlainFlowLayoutDemo */ = {
 			isa = PBXGroup;
 			children = (
+				25AB25CB1DF30C5B00B0A995 /* MJCPlainFlowLayout */,
 				25AB25991DF303C900B0A995 /* AppDelegate.h */,
 				25AB259A1DF303C900B0A995 /* AppDelegate.m */,
 				25AB259C1DF303C900B0A995 /* ViewController.h */,
 				25AB259D1DF303C900B0A995 /* ViewController.m */,
-				25AB259F1DF303C900B0A995 /* Main.storyboard */,
-				25AB25A21DF303C900B0A995 /* Assets.xcassets */,
-				25AB25A41DF303C900B0A995 /* LaunchScreen.storyboard */,
-				25AB25A71DF303C900B0A995 /* Info.plist */,
 				25AB25961DF303C900B0A995 /* Supporting Files */,
 			);
 			path = MJCPlainFlowLayoutDemo;
@@ -117,6 +121,12 @@
 		25AB25961DF303C900B0A995 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				25AB25D51DF3C14900B0A995 /* layout2.gif */,
+				25AB25C91DF30C5100B0A995 /* layout.gif */,
+				25AB259F1DF303C900B0A995 /* Main.storyboard */,
+				25AB25A21DF303C900B0A995 /* Assets.xcassets */,
+				25AB25A41DF303C900B0A995 /* LaunchScreen.storyboard */,
+				25AB25A71DF303C900B0A995 /* Info.plist */,
 				25AB25971DF303C900B0A995 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -138,6 +148,15 @@
 				25AB25BD1DF303C900B0A995 /* Info.plist */,
 			);
 			path = MJCPlainFlowLayoutDemoUITests;
+			sourceTree = "<group>";
+		};
+		25AB25CB1DF30C5B00B0A995 /* MJCPlainFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				25AB25CC1DF30C5B00B0A995 /* MJCPlainFlowLayout.h */,
+				25AB25CD1DF30C5B00B0A995 /* MJCPlainFlowLayout.m */,
+			);
+			path = MJCPlainFlowLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,8 +265,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25AB25CA1DF30C5100B0A995 /* layout.gif in Resources */,
 				25AB25A61DF303C900B0A995 /* LaunchScreen.storyboard in Resources */,
 				25AB25A31DF303C900B0A995 /* Assets.xcassets in Resources */,
+				25AB25D61DF3C14900B0A995 /* layout2.gif in Resources */,
 				25AB25A11DF303C900B0A995 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +297,7 @@
 				25AB259E1DF303C900B0A995 /* ViewController.m in Sources */,
 				25AB259B1DF303C900B0A995 /* AppDelegate.m in Sources */,
 				25AB25981DF303C900B0A995 /* main.m in Sources */,
+				25AB25CE1DF30C5B00B0A995 /* MJCPlainFlowLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +527,7 @@
 				25AB25C21DF303C900B0A995 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		25AB25C31DF303C900B0A995 /* Build configuration list for PBXNativeTarget "MJCPlainFlowLayoutDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +536,7 @@
 				25AB25C51DF303C900B0A995 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		25AB25C61DF303C900B0A995 /* Build configuration list for PBXNativeTarget "MJCPlainFlowLayoutDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +545,7 @@
 				25AB25C81DF303C900B0A995 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
