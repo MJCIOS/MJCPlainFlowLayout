@@ -18,6 +18,7 @@
 		25AB25CA1DF30C5100B0A995 /* layout.gif in Resources */ = {isa = PBXBuildFile; fileRef = 25AB25C91DF30C5100B0A995 /* layout.gif */; };
 		25AB25CE1DF30C5B00B0A995 /* MJCPlainFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB25CD1DF30C5B00B0A995 /* MJCPlainFlowLayout.m */; };
 		25AB25D61DF3C14900B0A995 /* layout2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 25AB25D51DF3C14900B0A995 /* layout2.gif */; };
+		25B8247D1DF45A2E00C124EE /* layout3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 25B8247C1DF45A2E00C124EE /* layout3.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		25AB25CC1DF30C5B00B0A995 /* MJCPlainFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJCPlainFlowLayout.h; sourceTree = "<group>"; };
 		25AB25CD1DF30C5B00B0A995 /* MJCPlainFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJCPlainFlowLayout.m; sourceTree = "<group>"; };
 		25AB25D51DF3C14900B0A995 /* layout2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layout2.gif; sourceTree = "<group>"; };
+		25B8247C1DF45A2E00C124EE /* layout3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layout3.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			children = (
 				25AB25D51DF3C14900B0A995 /* layout2.gif */,
 				25AB25C91DF30C5100B0A995 /* layout.gif */,
+				25B8247C1DF45A2E00C124EE /* layout3.gif */,
 				25AB259F1DF303C900B0A995 /* Main.storyboard */,
 				25AB25A21DF303C900B0A995 /* Assets.xcassets */,
 				25AB25A41DF303C900B0A995 /* LaunchScreen.storyboard */,
@@ -267,6 +270,7 @@
 			files = (
 				25AB25CA1DF30C5100B0A995 /* layout.gif in Resources */,
 				25AB25A61DF303C900B0A995 /* LaunchScreen.storyboard in Resources */,
+				25B8247D1DF45A2E00C124EE /* layout3.gif in Resources */,
 				25AB25A31DF303C900B0A995 /* Assets.xcassets in Resources */,
 				25AB25D61DF3C14900B0A995 /* layout2.gif in Resources */,
 				25AB25A11DF303C900B0A995 /* Main.storyboard in Resources */,
