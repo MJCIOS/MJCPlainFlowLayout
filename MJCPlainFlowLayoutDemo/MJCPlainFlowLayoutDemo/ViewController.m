@@ -20,7 +20,6 @@ static NSString *const MJCCellID = @"cell";
 
 @property (strong, nonatomic) UICollectionReusableView *headerView;
 
-
 /** <#  注释  #> */
 @property (nonatomic,strong) MJCPlainFlowLayout *layout;
 
