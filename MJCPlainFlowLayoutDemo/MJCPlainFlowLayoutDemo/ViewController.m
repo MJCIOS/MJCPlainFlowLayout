@@ -9,8 +9,6 @@
 #import "ViewController.h"
 #import "MJCPlainFlowLayout.h"
 
-
-
 //定义一个重用标示符
 static NSString *const MJCCellID = @"cell";
 
@@ -33,79 +31,71 @@ static NSString *const MJCCellID = @"cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _inter = 0;
-    
     MJCPlainFlowLayout *layout = [[MJCPlainFlowLayout alloc]init];
-    
-    
-    layout.itemCount = 2;
-    layout.itemLeftMargin = 10;
-    layout.itemRightMargin = 10;
-    layout.itemLineMargin = 40;
-    layout.itemRowMargin = 10;
-    
-    //设置heardView的大小宽度
-    layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width,50);
-
+    layout.srollingDirection = UICollectionViewScrollDirectionVertical;
+    layout.vlitemLineMaxCount = 2;
+    layout.vlitemMaxLeftMargin = 10;
+    layout.vlitemMaxRightMargin = 10;
+    layout.vlitemLineMargin = 40;
+    layout.vlitemRowMargin = 60;
+    layout.vlitemHegight = 50;
+    layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width,40);
     [self.collectionView1 setCollectionViewLayout:layout];
-    
     self.collectionView1.delegate = self;
     self.collectionView1.dataSource = self;
-    
     [self.collectionView1 registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView"];
-    
     [self.collectionView1 registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:MJCCellID];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    if (_inter == 0)
-    {
-        _inter += 1 ;
-        
+    if (_inter == 0){
+        _inter ++ ;
         MJCPlainFlowLayout  *layout= [[MJCPlainFlowLayout alloc]init];
-        layout.itemCount = 3;
-        
-        layout.itemLeftMargin = 10;
-        layout.itemRightMargin = 20;
-        layout.itemTopMargin = 30;
-        layout.itemBottomMargin = 40;
-        layout.itemLineMargin = 40;
-        layout.itemRowMargin = 60;
-        layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width,50);
-
-        
+        layout.srollingDirection = UICollectionViewScrollDirectionHorizontal;
+        layout.hlitemShowMaxCount = 4;
+        layout.hlitemMaxRightMargin = 10;
+        layout.hlitemMaxLeftMargin = 10;
+        layout.hlitemMaxTopMargin = self.collectionView1.frame.size.height  / 2 - 80;
+        layout.hlitemMaxBottomMargin = self.collectionView1.frame.size.height / 2 - 80;
+        layout.hlitemLineMargin = 10;
+        layout.headerReferenceSize = CGSizeMake(40,self.collectionView1.frame.size.height);
         [self.collectionView1 setCollectionViewLayout:layout animated:YES];
     
+    }else if (_inter == 1){
+        _inter ++ ;
+        MJCPlainFlowLayout  *layout= [[MJCPlainFlowLayout alloc]init];
+        layout.vlitemLineMaxCount = 3;
+        layout.vlitemMaxLeftMargin = 10;
+        layout.vlitemMaxRightMargin = 20;
+        layout.vlitemMaxTopMargin = 30;
+        layout.vlitemMaxBottomMargin = 40;
+        layout.vlitemLineMargin = 40;
+        layout.vlitemRowMargin = 60;
+        layout.vlitemHegight = 50;
+        layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width,40);
+        [self.collectionView1 setCollectionViewLayout:layout animated:YES];
     }else{
         _inter = 0;
-        
         MJCPlainFlowLayout *layout = [[MJCPlainFlowLayout alloc]init];
-        layout.itemCount = 2;
-        layout.itemLeftMargin = 10;
-        layout.itemRightMargin = 10;
-        layout.itemTopMargin = 10;
-        layout.itemBottomMargin = 20;
-        layout.itemLineMargin = 10;
-        layout.itemRowMargin = 10;
-        
-        
+        layout.vlitemLineMaxCount = 2;
+        layout.vlitemMaxLeftMargin = 10;
+        layout.vlitemMaxRightMargin = 10;
+        layout.vlitemMaxTopMargin = 10;
+        layout.vlitemMaxBottomMargin = 20;
+        layout.vlitemLineMargin = 10;
+        layout.vlitemRowMargin = 10;
+        layout.vlitemHegight = 50;
         [self.collectionView1 setCollectionViewLayout:layout animated:YES];
     }
 
 }
-
-
-
-
-#pragma mark - 数据源方法
-//多少组
+#pragma mark --<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 5;
 }
 
-// 每组多少个item (里面总共有多少个框框 、件)
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (section == 0) {
@@ -121,33 +111,18 @@ static NSString *const MJCCellID = @"cell";
     }
 }
 
-// 每个item（框框 、件）的内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // 取出cell
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:MJCCellID forIndexPath:indexPath];
-    
     cell.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1];
-    
-    
     return cell;
 }
-#pragma mark - 代理方法
-//选中某个cell框框 触发事件
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"摸我了");
-}
-
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * reuseIdentifier = @"headerView";
     
-    self.headerView =  [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:reuseIdentifier   forIndexPath:indexPath];
-    
+    self.headerView =  [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerView"   forIndexPath:indexPath];
     self.headerView.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1];
-    
     return self.headerView;
 }
 

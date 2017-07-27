@@ -1,13 +1,12 @@
 //
-//  MJCshishiLaout.m
-//  MJC项目大杂烩
+//  MJCPlainFlowLayout.m
+//  MJC
 //
 //  Created by mjc on 16/12/2.
 //
 //
 
 #import "MJCPlainFlowLayout.h"
-
 
 @interface MJCPlainFlowLayout()<UICollectionViewDelegateFlowLayout>
 
@@ -27,20 +26,14 @@
 @property (nonatomic,assign) CGFloat lineSpacing;//两个item之间,中间的列间距
 @property (nonatomic,assign) CGFloat rowSpacing;//两个item之间,中间的行间距
 
-/** collection宽度 */
-@property (nonatomic,assign) CGFloat collectionViewW;
-
 @end
 
 
 @implementation MJCPlainFlowLayout
 
-
-
 - (instancetype)init
 {
     if (self = [super init]) {
-        
         
         
     }
@@ -65,187 +58,144 @@
 {
     [super prepareLayout];
     
-    
-    //获取collectionView的宽度
     CGFloat collectionViewW = self.collectionView.frame.size.width;
-    _collectionViewW = collectionViewW;
+    CGFloat collectionViewH = self.collectionView.frame.size.height;
     self.minimumInteritemSpacing = 0;//最小间距值
-    
-    if (_rollingDirection == UICollectionViewScrollDirectionVertical) {
-        //默认垂直滚动
-        self.scrollDirection = UICollectionViewScrollDirectionVertical;
+    if (_srollingDirection == UICollectionViewScrollDirectionVertical) {
+        self.scrollDirection = _srollingDirection;//默认垂直滚动
+        [self setupScrollDirectionVertical:collectionViewW];
     }else{
-        self.scrollDirection = _rollingDirection;
+        self.scrollDirection = _srollingDirection;
+        [self setupScrollDirectionHorizontal:collectionViewW collectionViewH:collectionViewH];
     }
     
+}
+-(void)setupScrollDirectionHorizontal:(CGFloat)collectionViewW collectionViewH:(CGFloat)collectionViewH
+{
     //设置上下两个item中间的行间距
-    self.minimumLineSpacing = _rowSpacing;
+    self.minimumLineSpacing = _lineSpacing;
+    
+    //    layout.sectionInset = UIEdgeInsetsMake(40,10,20,10);//格子离顶部左边底部右边
+    //    layout.minimumLineSpacing = 10;//最小列间距
+    //    格子离顶部左边底部右边
+    //    layout.sectionInset = UIEdgeInsetsMake(40,10,20,10);
+    
     //设置顶间距,左间距,底部间距,右间距
     self.sectionInset = UIEdgeInsetsMake(_topSpacing,_leftSpacing,_bottomSpacing,_rightSpacing);
-    //计算item布局属性的宽度 (列间距)
+    
+    //计算item宽度 (collectionViewW - 最左边间距 - 最右边间距 - (每列之间的列间距)) / 列数
     _itemW = (collectionViewW - _leftSpacing - _rightSpacing - (_count - 1) * _lineSpacing) / _count;
-    
-    
-    //计算item布局属性的宽度
-    [self relieveitemHegight:_relieveitemHegight itemHegight:_itemHegight];
+    //计算item高度
+    _itemH = (collectionViewH - _topSpacing - _bottomSpacing);
+    //设置item大小
+    self.itemSize = CGSizeMake(_itemW,_itemH);
+}
 
+
+// !!!:垂直滚动
+-(void)setupScrollDirectionVertical:(CGFloat)collectionViewW
+{
+    //设置上下两个item中间的行间距
+    self.minimumLineSpacing = _rowSpacing;
+    
+    //设置顶间距,左间距,底部间距,右间距
+    self.sectionInset = UIEdgeInsetsMake(_topSpacing,_leftSpacing,_bottomSpacing,_rightSpacing);
+    
+    //计算item宽度 (collectionViewW - 最左边间距 - 最右边间距 - (每列之间的列间距)) / 列数
+    _itemW = (collectionViewW - _leftSpacing - _rightSpacing - (_count - 1) * _lineSpacing) / _count;
     
     //设置item大小
     self.itemSize = CGSizeMake(_itemW,_itemH);
     
-    
 }
 
--(void)setItemHegight:(CGFloat)itemHegight
+
+#pragma mark -- UICollectionViewScrollDirectionHorizontal(平行滚动)
+
+-(void)setHlitemShowMaxCount:(NSInteger)hlitemShowMaxCount
 {
-    _itemHegight = itemHegight;
-
-    _itemH = itemHegight;
-    
+    _hlitemShowMaxCount = hlitemShowMaxCount;
+    _count = hlitemShowMaxCount;
 }
-
--(void)setItemCount:(NSInteger)itemCount
+-(void)setHlitemMaxTopMargin:(CGFloat)hlitemMaxTopMargin
 {
-    _itemCount = itemCount;
-    _count = itemCount;
+    _hlitemMaxTopMargin = hlitemMaxTopMargin;
+    _topSpacing = hlitemMaxTopMargin;
 }
-
--(void)setItemLeftMargin:(CGFloat)itemLeftMargin
+-(void)setHlitemMaxBottomMargin:(CGFloat)hlitemMaxBottomMargin
 {
-    _itemLeftMargin = itemLeftMargin;
-    
-    _leftSpacing = itemLeftMargin;
-    
+    _hlitemMaxBottomMargin = hlitemMaxBottomMargin;
+    _bottomSpacing = hlitemMaxBottomMargin;
 }
-
--(void)setItemRightMargin:(CGFloat)itemRightMargin
+-(void)setHlitemMaxLeftMargin:(CGFloat)hlitemMaxLeftMargin
 {
-    _itemRightMargin = itemRightMargin;
-    
-    _rightSpacing = itemRightMargin;
-    
+    _hlitemMaxLeftMargin = hlitemMaxLeftMargin;
+    _leftSpacing = hlitemMaxLeftMargin;
 }
-
--(void)setItemTopMargin:(CGFloat)itemTopMargin
+-(void)setHlitemMaxRightMargin:(CGFloat)hlitemMaxRightMargin
 {
-    _itemTopMargin = itemTopMargin;
-    
-    _topSpacing = itemTopMargin;
+    _hlitemMaxRightMargin = hlitemMaxRightMargin;
+    _rightSpacing = hlitemMaxRightMargin;
 }
-
--(void)setItemBottomMargin:(CGFloat)itemBottomMargin
+-(void)setHlitemLineMargin:(CGFloat)hlitemLineMargin
 {
-    _itemBottomMargin = itemBottomMargin;
-    
-    _bottomSpacing = itemBottomMargin;
+    _hlitemLineMargin = hlitemLineMargin;
+    _lineSpacing = hlitemLineMargin;
 }
 
--(void)setItemLineMargin:(CGFloat)itemLineMargin
+#pragma mark -- UICollectionViewScrollDirectionVertical(垂直滚动)
+
+-(void)setVlitemLineMaxCount:(NSInteger)vlitemLineMaxCount
 {
-    _itemLineMargin = itemLineMargin;
-    
-    _lineSpacing = itemLineMargin;
+    _vlitemLineMaxCount = vlitemLineMaxCount;
+    _count = vlitemLineMaxCount;
 }
 
-
--(void)setItemRowMargin:(CGFloat)itemRowMargin
+-(void)setVlitemHegight:(CGFloat)vlitemHegight
 {
-    _itemRowMargin = itemRowMargin;
+    _vlitemHegight = vlitemHegight;
     
-    _rowSpacing = itemRowMargin;
+    _itemH = vlitemHegight;
 }
 
-
-#pragma mark --释放方法
--(void)relieveCountlimit:(BOOL)relieveCountlimit itemCount:(NSInteger)itemCount
+-(void)setVlitemMaxLeftMargin:(CGFloat)vlitemMaxLeftMargin
 {
-    _itemCount = itemCount;
-    
-    if (relieveCountlimit == YES) {
-        _count = itemCount;
-        return;
-    }
+    _vlitemMaxLeftMargin = vlitemMaxLeftMargin;
+    _leftSpacing = vlitemMaxLeftMargin;
 }
 
--(void)relieveLeftMargin:(BOOL)relieveLeftMargin itemLeftMargin:(CGFloat)itemLeftMargin
+-(void)setVlitemMaxRightMargin:(CGFloat)vlitemMaxRightMargin
 {
-    _itemLeftMargin = itemLeftMargin;
-    
-    if (relieveLeftMargin == YES) {
-        _leftSpacing = _itemLeftMargin;
-        return;
-    }
+    _vlitemMaxRightMargin = vlitemMaxRightMargin;
+    _rightSpacing = vlitemMaxRightMargin;
 }
 
--(void)relieveRightMargin:(BOOL)relieveRightMargin itemRightMargin:(CGFloat)itemRightMargin
+-(void)setVlitemMaxTopMargin:(CGFloat)vlitemMaxTopMargin
 {
-    _itemRightMargin = itemRightMargin;
+    _vlitemMaxTopMargin = vlitemMaxTopMargin;
     
-    if (relieveRightMargin == YES) {
-        _rightSpacing = _itemRightMargin;
-        return;
-    }
-    
+    _topSpacing = vlitemMaxTopMargin;
 }
-
--(void)relieveTopMargin:(BOOL)relieveTopMargin itemLineMargin:(CGFloat)itemTopMargin
+-(void)setVlitemMaxBottomMargin:(CGFloat)vlitemMaxBottomMargin
 {
-    _itemTopMargin = itemTopMargin;
+    _vlitemMaxBottomMargin = vlitemMaxBottomMargin;
     
-    if (relieveTopMargin == YES) {
-        _topSpacing = _itemTopMargin;
-        return;
-    }
-    
+    _bottomSpacing = vlitemMaxBottomMargin;
 }
 
--(void)relieveBottomMargin:(BOOL)relieveBottomMargin itemBottomMargin:(CGFloat)itemBottomMargin
+-(void)setVlitemLineMargin:(CGFloat)vlitemLineMargin
 {
-    _itemBottomMargin = itemBottomMargin;
+    _vlitemLineMargin = vlitemLineMargin;
     
-    if (relieveBottomMargin == YES) {
-        _bottomSpacing = _itemBottomMargin;
-        return;
-    }
+    _lineSpacing = vlitemLineMargin;
 }
 
--(void)relieveRowMargin:(BOOL)relieveRowMargin itemRowMargin:(CGFloat)itemRowMargin
+-(void)setVlitemRowMargin:(CGFloat)vlitemRowMargin
 {
-    _itemRowMargin = itemRowMargin;
+    _vlitemRowMargin = vlitemRowMargin;
     
-    if (relieveRowMargin == YES) {
-        _rowSpacing = _itemRowMargin;
-        return;
-    }
-    
+    _rowSpacing = vlitemRowMargin;
 }
-
-
--(void)relieveLineMargin:(BOOL)relieveLineMargin itemLineMargin:(CGFloat)itemLineMargin
-{
-    _itemLineMargin = itemLineMargin;
-    
-    if (relieveLineMargin == YES) {
-        _lineSpacing = _itemLineMargin;
-        return;
-    }
-}
-
--(void)relieveitemHegight:(BOOL)relieveitemHegight itemHegight:(CGFloat)itemHegight
-{
-    _itemHegight = itemHegight;
-    _relieveitemHegight = relieveitemHegight;
-    
-    if (relieveitemHegight == YES) {
-        _itemH = itemHegight;
-    }else{
-        //计算item布局属性的宽度
-        _itemH = (_collectionViewW - _topSpacing - _bottomSpacing - (_count - 1) * _rowSpacing) / _count;
-    }
-}
-
-
-
 
 
 
